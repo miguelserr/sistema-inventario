@@ -12,12 +12,12 @@ class OrdenCompra extends Model
     protected $fillable = ['producto_id', 'proveedor_id', 'cantidad', 'fecha_orden', 'fecha_entrega_estimada'];
 
     public function producto()
-    {
-        return $this->belongsTo(Producto::class);
-    }
+{
+    return $this->belongsTo(Producto::class);
+}
 
-    public function proveedor()
-    {
-        return $this->belongsTo(Proveedor::class);
-    }
+public function proveedor()
+{
+    return $this->belongsTo(Proveedor::class);
+}
 }

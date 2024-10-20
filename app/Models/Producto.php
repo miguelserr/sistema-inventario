@@ -11,10 +11,8 @@ class Producto extends Model
 
     protected $fillable = ['nombre', 'descripcion', 'precio', 'cantidad_en_stock'];
 
-    public function ordenesDeCompra()
-{
-    return $this->hasMany(OrdenCompra::class);
+    public function ordenesCompra()
+    {
+        return $this->hasMany(OrdenCompra::class);
+    }
 }
-
-}
-

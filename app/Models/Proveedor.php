@@ -11,9 +11,8 @@ class Proveedor extends Model
 
     protected $fillable = ['nombre', 'direccion', 'telefono', 'email'];
 
-    public function ordenesDeCompra()
+    public function ordenesCompra()
     {
         return $this->hasMany(OrdenCompra::class);
     }
 }
-

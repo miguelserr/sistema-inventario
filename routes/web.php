@@ -8,7 +8,9 @@ use App\Http\Controllers\OrdenCompraController;
 Route::middleware(['auth'])->group(function () {
     Route::resource('productos', ProductoController::class);
     Route::resource('proveedores', ProveedorController::class);
-    Route::resource('ordenes-de-compra', OrdenCompraController::class);
+    Route::resource('ordenes-compra', OrdenCompraController::class);
 });
 
-require __DIR__.'/auth.php';
+Route::get('/', function () {
+    return view('welcome');
+});

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
@@ -20,40 +19,38 @@ class ProductoController extends Controller
 
     public function store(Request $request)
     {
-        $producto = new Producto();
-        $producto->nombre = $request->nombre;
-        $producto->descripcion = $request->descripcion;
-        $producto->precio = $request->precio;
-        $producto->cantidad_en_stock = $request->cantidad_en_stock;
-        $producto->save();
-
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'precio' => 'required|numeric',
+            'cantidad_en_stock' => 'required|integer',
+        ]);
+        
+        Producto::create($request->all());
         return redirect()->route('productos.index');
     }
 
-    public function edit($id)
+    public function edit(Producto $producto)
     {
-        $producto = Producto::findOrFail($id);
         return view('productos.edit', compact('producto'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Producto $producto)
     {
-        $producto = Producto::findOrFail($id);
-        $producto->nombre = $request->nombre;
-        $producto->descripcion = $request->descripcion;
-        $producto->precio = $request->precio;
-        $producto->cantidad_en_stock = $request->cantidad_en_stock;
-        $producto->save();
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'precio' => 'required|numeric',
+            'cantidad_en_stock' => 'required|integer',
+        ]);
 
+        $producto->update($request->all());
         return redirect()->route('productos.index');
     }
 
-    public function destroy($id)
+    public function destroy(Producto $producto)
     {
-        $producto = Producto::findOrFail($id);
         $producto->delete();
-
         return redirect()->route('productos.index');
     }
 }
-
